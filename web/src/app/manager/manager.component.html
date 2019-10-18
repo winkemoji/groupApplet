@@ -1,0 +1,99 @@
+
+
+<div class="" >
+  <nav class="panel">
+    <p class="panel-heading">
+      管理当前分组
+    </p>
+    <a class="panel-block" >
+      <button class="button is-primary is-small is-fullwidth is-outlined" (click)="changeStatus(1)">开启</button>
+      
+    </a>
+
+    <a class="panel-block" >
+            <button class="button is-danger is-small is-fullwidth is-outlined" (click)="changeStatus(0)">关闭</button>
+            
+    </a>
+    <a class="panel-block" >
+      <button class="button is-info is-small is-fullwidth is-outlined" (click)="reSet()">重置</button>
+      
+    </a>
+
+    <div class="panel-block">
+        <span>当前人数: {{pairNums}}&nbsp;&nbsp;</span>
+        <span>每组人数: {{eachGroup}}&nbsp;&nbsp;</span>
+        <span >分配组数: {{pairNums/eachGroup}}</span>
+    </div>
+
+    <div class="panel-block">
+      <input class="input is-small" type="text" placeholder="设置每组人数" (ngModelChange)='calGroupNum()' [(ngModel)]="eachGroup">
+  </div>
+  
+
+
+    <div class="panel-block">
+      <input class="input is-small " type="text" placeholder="用户ID" [(ngModel)]="user">
+      <button class="button is-link is-small is-outlined" (click)="addUser()"  >添加伙伴</button>
+    </div>
+
+
+    <a class="panel-block">
+            <input class="input is-small " type="text" placeholder="用户ID" [(ngModel)]="dlUser">
+            <button class="button is-link is-small is-outlined" (click)="deleteUser()">移除伙伴</button>
+    </a>
+
+    <div class="panel-block">
+      <button class="button is-link is-outlined is-fullwidth is-small" (click)='createPair()'>
+        生成分组
+      </button>
+    </div>
+
+    
+
+  </nav>
+
+
+  <div class="card" style="width: 100%;" *ngIf="userList != ''">
+    <header class="card-header">
+      <p class="card-header-title is-centered ">
+        参与分组伙伴
+      </p>
+    </header>
+    <div class="card-content" style="width: 100%;padding: 3px 10px;">
+      <div class="content" style="width: 100%;margin-top:0px;">
+              <ul  class="menu-list" style="list-style-type: none;width:100%;">
+                <li *ngFor = "let item of userList; index as i;">
+                  <a *ngIf="item == userID" class="is-active"  style="padding:0px;">{{item}}</a>
+                  <a *ngIf="item != userID" class="" style="padding:0px;" >{{item}}</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <div *ngIf="isGetRes && res !=''" class="card" style="width: 100%;">
+      <header class="card-header">
+        <p class="card-header-title is-centered ">
+            分组情况
+        </p>
+      </header>
+      <div class="card-content" style="width: 100%;padding: 3px 10px;">
+        <div class="content" style="width: 100%;margin-top:0px;">
+            <ul  class="menu-list" style="list-style-type: none;width:100%;padding-right:0px;" >
+                <li *ngFor = "let item of res; index as i;">
+                  第{{i+1}}组: {{item}}
+                </li>
+              </ul>
+        </div>
+      </div>
+      <br>
+    </div>
+
+    <div style="height: 70px;">
+    </div>
+
+    
+
+</div>
+  
